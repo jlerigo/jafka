@@ -1,0 +1,19 @@
+tasks:
+    build-project:
+        name: Build Jafka
+        command: mvn clean compile
+        triggeredBy:
+            - postDevcontainerStart
+            - manual
+    
+    run-tests:
+        name: Run Tests
+        command: mvn test
+        triggeredBy:
+            - manual
+    
+    install-dependencies:
+        name: Install Dependencies
+        command: mvn dependency:resolve
+        triggeredBy:
+            - postDevcontainerStart
