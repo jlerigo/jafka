@@ -1,5 +1,5 @@
 {
-    "name": "Jafka Development Environment",
+    "name": "Apache Kafka Development",
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile"
@@ -9,10 +9,15 @@
             "extensions": [
                 "vscjava.vscode-java-pack",
                 "redhat.java",
-                "vscjava.vscode-maven"
-            ]
+                "vscjava.vscode-gradle"
+            ],
+            "settings": {
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "editor.formatOnSave": true
+            }
         }
     },
-    "forwardPorts": [8080, 9092],
-    "remoteUser": "vscode"
+    "forwardPorts": [9092, 2181, 8080],
+    "remoteUser": "vscode",
+    "postCreateCommand": "chmod +x gradlew"
 }

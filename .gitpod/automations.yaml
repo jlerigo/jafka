@@ -1,19 +1,55 @@
 tasks:
     build-project:
-        name: Build Jafka
-        command: mvn clean compile
+        name: Build Kafka
+        command: ./gradlew jar
         triggeredBy:
             - postDevcontainerStart
+            - manual
+    
+    clean-build:
+        name: Clean and Build
+        command: ./gradlew clean jar
+        triggeredBy:
             - manual
     
     run-tests:
-        name: Run Tests
-        command: mvn test
+        name: Run Unit Tests
+        command: ./gradlew unitTest
         triggeredBy:
             - manual
     
-    install-dependencies:
-        name: Install Dependencies
-        command: mvn dependency:resolve
+    run-integration-tests:
+        name: Run Integration Tests
+        command: ./gradlew integrationTest
         triggeredBy:
-            - postDevcontainerStart
+            - manual
+    
+    run-all-tests:
+        name: Run All Tests
+        command: ./gradlew test
+        triggeredBy:
+            - manual
+    
+    build-source-jar:
+        name: Build Source JAR
+        command: ./gradlew srcJar
+        triggeredBy:
+            - manual
+    
+    generate-docs:
+        name: Generate Documentation
+        command: ./gradlew aggregatedJavadoc
+        triggeredBy:
+            - manual
+    
+    code-quality-check:
+        name: Run Code Quality Checks
+        command: ./gradlew checkstyleMain checkstyleTest spotlessCheck
+        triggeredBy:
+            - manual
+    
+    list-gradle-tasks:
+        name: List All Gradle Tasks
+        command: ./gradlew tasks
+        triggeredBy:
+            - manual
