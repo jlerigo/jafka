@@ -5,49 +5,61 @@ tasks:
         triggeredBy:
             - postDevcontainerStart
             - manual
-    
+
     clean-build:
         name: Clean and Build
         command: ./gradlew clean jar
         triggeredBy:
             - manual
-    
+
     run-tests:
         name: Run Unit Tests
         command: ./gradlew unitTest
         triggeredBy:
             - manual
-    
+
     run-integration-tests:
         name: Run Integration Tests
         command: ./gradlew integrationTest
         triggeredBy:
             - manual
-    
+
     run-all-tests:
         name: Run All Tests
         command: ./gradlew test
         triggeredBy:
             - manual
-    
+
     build-source-jar:
         name: Build Source JAR
         command: ./gradlew srcJar
         triggeredBy:
             - manual
-    
+
     generate-docs:
-        name: Generate Documentation
-        command: ./gradlew aggregatedJavadoc
+        name: Generate Documentation (Offline)
+        command: ./gradlew aggregatedJavadoc -Dorg.gradle.jvmargs="-Djava.net.useSystemProxies=true" --offline
         triggeredBy:
             - manual
-    
+
+    generate-docs-simple:
+        name: Generate Simple Documentation
+        command: ./gradlew javadoc
+        triggeredBy:
+            - manual
+
+    generate-module-docs:
+        name: Generate Module Documentation
+        command: ./gradlew javadocJar
+        triggeredBy:
+            - manual
+
     code-quality-check:
         name: Run Code Quality Checks
         command: ./gradlew checkstyleMain checkstyleTest spotlessCheck
         triggeredBy:
             - manual
-    
+
     list-gradle-tasks:
         name: List All Gradle Tasks
         command: ./gradlew tasks
