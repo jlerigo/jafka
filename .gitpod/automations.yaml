@@ -65,3 +65,35 @@ tasks:
         command: ./gradlew tasks
         triggeredBy:
             - manual
+
+    test-environment:
+        name: Test Development Environment
+        command: |
+            echo "=== Testing Kafka Development Environment ==="
+            echo "1. Checking Java version:"
+            java -version
+            echo ""
+            echo "2. Checking Gradle:"
+            ./gradlew --version
+            echo ""
+            echo "3. Testing basic build:"
+            ./gradlew help
+            echo ""
+            echo "4. Checking project structure:"
+            ls -la
+            echo ""
+            echo "5. Testing quick compile:"
+            ./gradlew compileJava -q
+            echo ""
+            echo "=== Environment Test Complete ==="
+        triggeredBy:
+            - manual
+    
+    quick-test:
+        name: Quick Kafka Test
+        command: |
+            echo "Running a quick Kafka test..."
+            ./gradlew :clients:test --tests "org.apache.kafka.clients.MetadataTest.testTimeToNextUpdate" --quiet
+            echo "Quick test completed!"
+        triggeredBy:
+            - manual
