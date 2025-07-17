@@ -13,9 +13,14 @@
             ],
             "settings": {
                 "java.configuration.updateBuildConfiguration": "automatic",
-                "editor.formatOnSave": true
+                "editor.formatOnSave": true,
+                "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current",
+                "gradle.java.home": "/usr/lib/jvm/msopenjdk-current"
             }
         }
+    },
+    "containerEnv": {
+        "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current"
     },
     "forwardPorts": [9092, 2181, 8080],
     "remoteUser": "vscode",
