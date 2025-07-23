@@ -6,24 +6,6 @@ tasks:
             - postDevcontainerStart
             - manual
 
-    clean-build:
-        name: Clean and Build
-        command: ./gradlew clean jar
-        triggeredBy:
-            - manual
-
-    run-tests:
-        name: Run Unit Tests
-        command: ./gradlew unitTest
-        triggeredBy:
-            - manual
-
-    run-integration-tests:
-        name: Run Integration Tests
-        command: ./gradlew integrationTest
-        triggeredBy:
-            - manual
-
     run-all-tests:
         name: Run All Tests
         command: ./gradlew test
@@ -36,21 +18,9 @@ tasks:
         triggeredBy:
             - manual
 
-    generate-docs:
-        name: Generate Documentation (Offline)
-        command: ./gradlew aggregatedJavadoc -Dorg.gradle.jvmargs="-Djava.net.useSystemProxies=true" --offline
-        triggeredBy:
-            - manual
-
     generate-docs-simple:
         name: Generate Simple Documentation
         command: ./gradlew javadoc
-        triggeredBy:
-            - manual
-
-    generate-module-docs:
-        name: Generate Module Documentation
-        command: ./gradlew javadocJar
         triggeredBy:
             - manual
 
@@ -63,29 +33,6 @@ tasks:
     list-gradle-tasks:
         name: List All Gradle Tasks
         command: ./gradlew tasks
-        triggeredBy:
-            - manual
-
-    test-environment:
-        name: Test Development Environment
-        command: |
-            echo "=== Testing Kafka Development Environment ==="
-            echo "1. Checking Java version:"
-            java -version
-            echo ""
-            echo "2. Checking Gradle:"
-            ./gradlew --version
-            echo ""
-            echo "3. Testing basic build:"
-            ./gradlew help
-            echo ""
-            echo "4. Checking project structure:"
-            ls -la
-            echo ""
-            echo "5. Testing quick compile:"
-            ./gradlew compileJava -q
-            echo ""
-            echo "=== Environment Test Complete ==="
         triggeredBy:
             - manual
     
