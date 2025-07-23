@@ -20,7 +20,8 @@
         }
     },
     "containerEnv": {
-        "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current"
+        "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current",
+        "PATH": "/usr/lib/jvm/msopenjdk-current/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/vscode/.local/bin"
     },
     "forwardPorts": [9092, 2181, 8080],
     "remoteUser": "vscode",
